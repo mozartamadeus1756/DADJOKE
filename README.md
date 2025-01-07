@@ -83,7 +83,7 @@ This is a easy web application that fetches random dad jokes from **icanhazdadjo
 
 
 * A button (id="button") to trigger the joke-fetching process.
-* A <p> element (id="punchline") to display the fetched joke.
+* A < p > element (id="punchline") to display the fetched joke.
 
 
 ***
