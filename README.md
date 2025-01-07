@@ -162,7 +162,7 @@ document.addEventListener("click", function(event){
 * Attaches a click event listener to the entire document.
 * Detects when the button is clicked.
 * Fetches a dad joke from the icanhazdadjoke API.
-* Displays the joke in the ····<p> element or logs errors to the console.
+* Displays the joke in the < p > element or logs errors to the console.
 
 ***
 
