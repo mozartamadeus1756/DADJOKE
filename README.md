@@ -6,7 +6,13 @@ This is a easy web application that fetches random dad jokes from **icanhazdadjo
 
 ## Table of content
 
-(finne ut av hvordan man lager linker??)
+- [Demo](#demo)
+- [Features](#features)
+- [How it works](#how-it-works)
+- [Technologies Used](#technologies-used)
+- [Setup Instructions](#setup-instructions)
+- [Code Breakdown](#code-breakdown)
+- [Future Improvments](#future-improvments)
 
 ***
 
