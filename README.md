@@ -1,6 +1,6 @@
 # DAD JOKE API
 
-This is a eazy web application that fetches random dad jokes from **icanhazdadjoke** API and displayes them on the page, when the **GET** **DADAJOKE** is pressed. It is styled with a bright yellow background and a bright button you just have to click!
+This is a easy web application that fetches random dad jokes from **icanhazdadjoke** API and displayes them on the page, when the **GET** **DADAJOKE** is pressed. It is styled with a bright yellow background and a bright button you just have to click!
 
 ***
 
