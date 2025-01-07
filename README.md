@@ -37,8 +37,8 @@ This is a easy web application that fetches random dad jokes from **icanhazdadjo
 ## How it works
 
 1) **HTML Structure:**
-    * A button ····(id="button") to trigger the joke fetch.
-    * A paragraph ····(id="punchline") to display the joke.
+    * A button (id="button") to trigger the joke fetch.
+    * A paragraph (id="punchline") to display the joke.
 2) **JavaScript Logic:**
     * Listens for clicks on the button.
     * Fetches a random dad joke from the icanhazdadjoke API using the fetch function.
@@ -81,8 +81,8 @@ This is a easy web application that fetches random dad jokes from **icanhazdadjo
 </html>
 ```
 
-* A button ····(id="button") to trigger the joke-fetching process.
-* A ····<p> element ····(id="punchline") to display the fetched joke.
+* A button (id="button") to trigger the joke-fetching process.
+* A <p> element (id="punchline") to display the fetched joke.
 
 ***
 
