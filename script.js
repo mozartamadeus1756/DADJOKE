@@ -12,7 +12,7 @@ document.addEventListener("click", function(event){
     })
     .then(response => {
         if(!response.ok) {
-            throw new Error('eeroor');
+            throw new Error('error');
         }
         return response.json();
     })

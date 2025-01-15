@@ -20,6 +20,7 @@ body {
     background-color: white; 
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     font-family: 'Jersey 15', sans-serif; 
+    position: absolute;
 }
 
 #button:hover {
@@ -29,6 +30,7 @@ body {
 #punchline {
     color: black;
     font-size: 25px; 
-    margin-top: 20px; 
+    margin-top: 20vh; 
     text-align: center;
+    
 }
