@@ -2,11 +2,9 @@ let currentJoke = '';
 
 document.addEventListener("click", function(event) {
     if (!event.target.matches("#button")) return;
-
     console.log("button was pressed");
 
     const URL = 'https://icanhazdadjoke.com/';
-
     fetch(URL, {
         headers: {
             'Accept': 'application/json'
@@ -40,6 +38,7 @@ document.addEventListener("click", function(event) {
         };
         console.log(favoriteJokeData) 
 }});
+
 
 
 
