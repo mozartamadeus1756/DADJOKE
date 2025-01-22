@@ -34,3 +34,16 @@ body {
     text-align: center;
     
 }
+
+#favorite{
+    color: red;
+    font-size: 30px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: white; 
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    font-family: 'Jersey 15', sans-serif; 
+}
+

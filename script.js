@@ -36,8 +36,20 @@ document.addEventListener("click", function(event) {
             joke: currentJoke,
             date: new Date().toISOString().split('T')[0]  
         };
-        console.log(favoriteJokeData) 
+        console.log(favoriteJokeData);
+
+        fetch("http://localhost:5502/favorite", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(favoriteJokeData)
+        })
+        .then(response => response.json())
+        .then(data => console.log("server response", data))
+        .catch(error => console.error("error", error));
 }});
+
 
 
 
