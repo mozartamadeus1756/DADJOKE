@@ -50,6 +50,18 @@ document.addEventListener("click", function(event) {
         .catch(error => console.error("error", error));
 }});
 
+document.addEventListener("click", function(event) {
+    if (!event.target.matches("#see-favorites")) return;
+
+    fetch("http://loclahost/5502/see-favorites", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    
+})
+
 
 
 

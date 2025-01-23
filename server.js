@@ -1,14 +1,16 @@
 require('dotenv').config();
-const express = require('express');
+const http = require('http'); 
+const express = require('express'), bodyParser = require('body-parser');
 const mariadb = require('mariadb');
 const cors = require('cors');
-
 
 const app = express();
 const port = 5502;
 
+app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.json());
 app.use(cors());
+
 
 const pool = mariadb.createPool({
     host: process.env.DB_HOST,
@@ -33,14 +35,34 @@ app.post("/favorite", async (req) => {
   }
 });
 
-app.get("/seeFavorites", async (req) => {
-  return("yolo")
-})
-
-
 app.listen(port, () => {
   console.log(`server running at https://localhost:${port}`);
 });
+
+// get data
+
+app.get("/see-favorites", async(res) =>{
+  let conn;
+  try {
+      conn = await pool.getConnection();
+      const rows = await conn.query(`SELECT * FROM jokes`);
+      console.log(rows);
+      const jsonS = JSON.stringify(rows);
+      res.writeHead(200, {'content-type': 'application/json'});
+      res.end(jsonS);
+
+  } catch (e) {
+      console.log('database error', e);
+  } finally {
+      if (conn) conn.release();
+  }
+}); 
+
+http.createServer(app).listen(5503, ()=>{
+  console.log('express server started 5503');
+});
+
+
 
 
 
