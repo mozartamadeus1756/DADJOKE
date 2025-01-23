@@ -3,6 +3,7 @@ const express = require('express');
 const mariadb = require('mariadb');
 const cors = require('cors');
 
+
 const app = express();
 const port = 5502;
 
@@ -31,6 +32,11 @@ app.post("/favorite", async (req) => {
     if (conn) await conn.end();
   }
 });
+
+app.get("/seeFavorites", async (req) => {
+  return("yolo")
+})
+
 
 app.listen(port, () => {
   console.log(`server running at https://localhost:${port}`);

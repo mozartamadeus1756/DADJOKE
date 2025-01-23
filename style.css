@@ -12,8 +12,8 @@ body {
 
 #button {
     color: red;
-    font-size: 30px;
-    padding: 10px 20px;
+    font-size: 40px;
+    padding: 20px 30px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -30,15 +30,30 @@ body {
 #punchline {
     color: black;
     font-size: 25px; 
-    margin-top: 20vh; 
+    margin-top: 30vh; 
     text-align: center;
-    
 }
 
 #favorite{
     color: red;
     font-size: 30px;
-    padding: 10px 20px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: white; 
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    font-family: 'Jersey 15', sans-serif; 
+    margin-top: px;
+}
+
+#see-favorites {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: red;
+    font-size: 20px;
+    padding: 10px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -46,4 +61,6 @@ body {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     font-family: 'Jersey 15', sans-serif; 
 }
+
+
 
