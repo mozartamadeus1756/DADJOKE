@@ -53,14 +53,22 @@ document.addEventListener("click", function(event) {
 document.addEventListener("click", function(event) {
     if (!event.target.matches("#see-favorites")) return;
 
-    fetch("http://loclahost/5502/see-favorites", {
+    window.location.href = "http://localhost:5503/see-favorites";
+
+    fetch("http://localhost:5503/see-favorites", { 
         method: "GET",
         headers: {
             "Content-Type": "application/json"
         }
     })
-    
-})
+    .then(response => response.json())
+    // .then(data => {
+    //     console.log("favorites", data);
+    //     displayFavorites(data);
+    // })
+    .catch(error => console.log("error fetching favorites", error)); 
+});
+
 
 
 

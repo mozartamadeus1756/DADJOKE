@@ -26,8 +26,8 @@ app.post("/favorite", async (req) => {
     console.log(`recived joke, ${joke}, and date ${date}`);
 
     conn = await pool.getConnection();
-    const res = await conn.query("INSERT INTO jokes (joke, date) VALUES (?, ?)", [joke, date]);
-
+    const res = await conn.query("INSERT INTO jokes (joke, date) VALUES (AES_ENCRYPT(?, SHA2('my_secret_key', 512)), ?)", [joke, date]);
+    
   } catch (err) {
     throw err;
   } finally {
@@ -41,11 +41,11 @@ app.listen(port, () => {
 
 // get data
 
-app.get("/see-favorites", async(res) =>{
+app.get("/see-favorites", async (req, res) =>{
   let conn;
   try {
       conn = await pool.getConnection();
-      const rows = await conn.query(`SELECT * FROM jokes`);
+      const rows = await conn.query(`SELECT joke_id, CAST(AES_DECRYPT(joke, SHA2('my_secret_key', 512)) AS CHAR) AS joke, date FROM jokes`);
       console.log(rows);
       const jsonS = JSON.stringify(rows);
       res.writeHead(200, {'content-type': 'application/json'});
