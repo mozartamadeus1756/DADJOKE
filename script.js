@@ -4,25 +4,21 @@ document.addEventListener("click", function(event) {
     if (!event.target.matches("#button")) return;
     console.log("button was pressed");
 
-    const URL = 'https://icanhazdadjoke.com/';
-    fetch(URL, {
-        headers: {
-            'Accept': 'application/json'
-        }
-    })
+    fetch("http://localhost:5502/get-joke")
     .then(response => {
         if (!response.ok) {
-            throw new Error('Error fetching joke');
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
         return response.json();
     })
     .then(data => {
         console.log(data.joke);
-        currentJoke = data.joke;  // store the joke for later use
+        currentJoke = data.joke;
         document.getElementById("punchline").textContent = data.joke;
     })
     .catch(error => {
-        console.error('Error fetching the dad joke', error);
+        console.error('Error fetching the dad joke:', error);
+        document.getElementById("punchline").textContent = "Sorry, couldn't fetch a joke. Please try again!";
     });
 });
 
@@ -53,7 +49,7 @@ document.addEventListener("click", function(event) {
 document.addEventListener("click", function(event) {
     if (!event.target.matches("#see-favorites")) return;
 
-    window.location.href = "http://localhost:5503/see-favorites";
+    // window.location.href = "http://localhost:5503/see-favorites";
 
     fetch("http://localhost:5503/see-favorites", { 
         method: "GET",
