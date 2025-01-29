@@ -7,7 +7,8 @@ document.addEventListener("click", function(event) {
     const URL = 'https://icanhazdadjoke.com/';
     fetch(URL, {
         headers: {
-            'Accept': 'application/json'
+            'Accept': 'application/json',
+            'User-Agent': 'Dad Joke Web App'
         }   
     })
     .then(response => {
@@ -38,7 +39,7 @@ document.addEventListener("click", function(event) {
         };
         console.log(favoriteJokeData);
 
-        fetch("http://localhost:5502/favorite", {
+        fetch("http://localhost:5503/favorite", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
