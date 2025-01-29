@@ -1,95 +1,117 @@
-# DAD JOKE API
 
-This is a easy web application that fetches random dad jokes from **icanhazdadjoke** API and displayes them on the page, when the **GET** **DADAJOKE** is pressed. It is styled with a bright yellow background and a bright button you just have to click!
+# Dad Joke Application
 
-***
+A fun web application that fetches random dad jokes and allows users to save their favorites. Built with Express.js, MariaDB, and vanilla JavaScript.
 
-## Table of content
+## Features
 
-- [Demo](#demo)
-- [Features](#features)
-- [How it works](#how-it-works)
-- [Technologies Used](#technologies-used)
-- [Setup Instructions](#setup-instructions)
-- [Code Breakdown](#code-breakdown)
-- [Future Improvments](#future-improvments)
+- Fetch random dad jokes from the icanhazdadjoke API
+- Save favorite jokes to a database
+- View all saved favorite jokes
+- Responsive design with a fun, playful interface
 
-***
+## Tech Stack
 
-## Demo
+- Frontend: HTML, CSS, JavaScript
+- Backend: Node.js, Express.js
+- Database: MariaDB
+- API: icanhazdadjoke
 
-1) Click the **GET** **DADAJOKE** to fetch a dad joke.
-2) The joke will display right undet the button.
+## Installation
 
-***
-
-## Features 
-
-* Fetches a random dad joke from the icanhazdadjoke API.
-* Simple and responsive user interface:
-    * The button and text are centered vertically and horizontally on the screen.
-    * Styled button with hover effect.
-    * Clean display of the dad joke below the button.
-* Handles errors gracefully, displaying messages in the browser's console if anything goes wrong.
-
-***
-
-## How it works
-
-1) **HTML Structure:**
-    * A button (id="button") to trigger the joke fetch.
-    * A paragraph (id="punchline") to display the joke.
-2) **JavaScript Logic:**
-    * Listens for clicks on the button.
-    * Fetches a random dad joke from the icanhazdadjoke API using the fetch function.
-    * Updates the paragraph with the fetched joke or logs errors if something goes wrong.
-3) **CSS Styling:**
-    * Centers the button and text on the screen using Flexbox.
-    * Adds a clean, fun look with custom fonts, colors, and shadows.
-
-***
-
-## Technologies Used
-
-* **HTML:** For the structure of the page.
-* **CSS:** For the styling and the layout.
-* **JavaScript:** For handeling button clicks, making API calls, and updating the UI.
-* **icanhozdadjoke API:** To fetch dad jokes. 
-
-***
-
-## Setup Instructions
-
-1) Clone or download the repository.
-2) Open the index.html file in any web browser.
-3) Click the "GET DADAJOKE" button to fetch and display a random dad joke.
-
-***
-
-## Code breakdown 
-
-**HTML**
+1. Clone the repository
+2. Install dependencies:
+```bash
+npm install
 ```
+
+3. Create a `.env` file in the root directory with your database credentials:
+```env
+DB_HOST='localhost'
+DB_USER='your_username'
+DB_PASSWORD='your_password'
+DB_NAME='dada_joke'
+DB_CONN_LIMIT=5
+```
+
+4. Set up the database:
+```sql
+CREATE DATABASE dada_joke;
+USE dada_joke;
+
+CREATE TABLE jokes (
+    joke_id INT AUTO_INCREMENT PRIMARY KEY,
+    joke BLOB NOT NULL,
+    date DATE NOT NULL
+);
+```
+
+## Project Structure
+
+```plaintext
+dad_joke/
+├── index.html          # Main page
+├── favorites.html      # Favorites display page
+├── script.js          # Main JavaScript
+├── favorites.js       # Favorites page JavaScript
+├── style.css         # Main styles
+├── fav.css          # Favorites page styles
+├── server.js        # Express server
+└── .env            # Environment variables
+```
+
+## Code Examples
+
+### Main Page (index.html)
+```html
 <body>
-
-    <button id="button" type="button" >GET DADAJOKE</button>
+    <button id="button" type="button">GET DADAJOKE</button>
     <p id="punchline"></p>
-
-    
+    <button id="favorite">❤️ Add to Favorites</button>
+    <button id="see-favorites">See Favorites</button>
     <script src="script.js"></script>
 </body>
-</html>
 ```
 
+### Server Endpoints (server.js)
+```javascript
+// Fetch a new joke
+app.get("/get-joke", async (req, res) => {
+  try {
+    const response = await fetch('https://icanhazdadjoke.com/', {
+      headers: {
+        'Accept': 'application/json',
+        'User-Agent': 'Dad Joke Web App'
+      }
+    });
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch joke' });
+  }
+});
 
-* A button (id="button") to trigger the joke-fetching process.
-* A < p > element (id="punchline") to display the fetched joke.
-
-
-***
-
-**CSS**
+// Save a favorite joke
+app.post("/favorite", async (req, res) => {
+  let conn;
+  try {
+    const {joke, date} = req.body;
+    conn = await pool.getConnection();
+    await conn.query(
+      "INSERT INTO jokes (joke, date) VALUES (AES_ENCRYPT(?, SHA2('baldurerbest', 512)), ?)", 
+      [joke, date]
+    );
+    res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  } finally {
+    if (conn) await conn.release();
+  }
+});
 ```
+
+### Styling Example (style.css)
+```css
 body {
     display: flex;
     flex-direction: column; 
@@ -101,71 +123,51 @@ body {
     font-family: 'Jersey 15', sans-serif;
 }
 
-#button {
-    color: red;
-    font-size: 30px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: white; 
+.joke-card {
+    background-color: white;
+    padding: 15px;
+    margin: 10px 0; 
+    border-radius: 10px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    font-family: 'Jersey 15', sans-serif; 
-}
-
-#button:hover {
-    background-color: #f0f0f0; 
-}
-
-#punchline {
-    color: black;
-    font-size: 25px; 
-    margin-top: 20px; 
+    max-width: 500px; 
     text-align: center;
 }
 ```
-* **Body:** Centers the button and joke text using Flexbox.
-* **Button:** Styled with hover effects, rounded corners, and shadow for a clean look.
-* **Punchline:** Styles the joke text for visibility and readability.
 
-*** 
-**JacaScript**
+## Running the Application
+
+1. Start the server:
+```bash
+node server.js
 ```
-document.addEventListener("click", function(event){
-    if(!event.target.matches("#button")) return;
 
-    console.log("button was pressed");
+2. Access the application at `http://localhost:5502`
 
-    const URL = 'https://icanhazdadjoke.com/'
+## Features in Detail
 
-    fetch(URL, {
-        headers: {
-            'Accept': 'application/json'
-        }
-    })
-    .then(response => {
-        if(!response.ok) {
-            throw new Error('eeroor');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log(data.joke);
-        document.getElementById("punchline").textContent = data.joke;
-    })
-    .catch(error => {
-        console.error('error fetching the dad joke', error);
-    }); 
-});
+1. **Random Joke Generation**
+   - Click the "GET DADAJOKE" button to fetch a random joke
+   - Jokes are fetched from the icanhazdadjoke API
 
-```
-* Attaches a click event listener to the entire document.
-* Detects when the button is clicked.
-* Fetches a dad joke from the icanhazdadjoke API.
-* Displays the joke in the < p > element or logs errors to the console.
+2. **Favorite System**
+   - Save jokes you like with the "Add to Favorites" button
+   - View all saved jokes in the favorites page
+   - Jokes are encrypted in the database for security
 
-***
+3. **Responsive Design**
+   - Mobile-friendly interface
+   - Clean, readable joke cards
+   - Playful yellow theme with Jersey font
 
-## Future improvments 
+## Security Features
 
-1) **Store jokes:** Store or save jokes in a way, perhaps in a favorit system were you can favorit certain jokes, and store them.
+- Database encryption for stored jokes
+- Environment variable configuration
+- Error handling for API and database operations
+
+## Future Improvements
+
+- Add user authentication
+- Implement joke categories
+- Add ability to share jokes
+- Include joke rating system
