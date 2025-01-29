@@ -2,23 +2,27 @@ let currentJoke = '';
 
 document.addEventListener("click", function(event) {
     if (!event.target.matches("#button")) return;
-    console.log("button was pressed");
+    console.log("Button was pressed");
 
-    fetch("http://localhost:5502/get-joke")
+    const URL = 'https://icanhazdadjoke.com/';
+    fetch(URL, {
+        headers: {
+            'Accept': 'application/json'
+        }   
+    })
     .then(response => {
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error('Error fetching joke');
         }
         return response.json();
     })
     .then(data => {
         console.log(data.joke);
-        currentJoke = data.joke;
+        currentJoke = data.joke; 
         document.getElementById("punchline").textContent = data.joke;
     })
     .catch(error => {
-        console.error('Error fetching the dad joke:', error);
-        document.getElementById("punchline").textContent = "Sorry, couldn't fetch a joke. Please try again!";
+        console.error('Error fetching the dad joke', error);
     });
 });
 
@@ -49,8 +53,6 @@ document.addEventListener("click", function(event) {
 document.addEventListener("click", function(event) {
     if (!event.target.matches("#see-favorites")) return;
 
-    // window.location.href = "http://localhost:5503/see-favorites";
-
     fetch("http://localhost:5503/see-favorites", { 
         method: "GET",
         headers: {
@@ -58,10 +60,6 @@ document.addEventListener("click", function(event) {
         }
     })
     .then(response => response.json())
-    // .then(data => {
-    //     console.log("favorites", data);
-    //     displayFavorites(data);
-    // })
     .catch(error => console.log("error fetching favorites", error)); 
 });
 
