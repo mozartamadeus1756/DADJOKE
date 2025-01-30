@@ -168,6 +168,8 @@ node server.js
 ## Future Improvements
 
 - Add user authentication
-- Implement joke categories
-- Add ability to share jokes
 - Include joke rating system
+- Host website on a VM
+- Make a better background with JS canvas 
+
+
