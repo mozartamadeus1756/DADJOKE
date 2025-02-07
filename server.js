@@ -6,23 +6,23 @@ const cors = require('cors');
 const path = require('path');
 
 const app = express();
-const port = 5503;
+const port = 5502;
 
-app.use(express.static(path.join(__dirname))); 
+app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.json());
 app.use(cors());
-
 
 const pool = mariadb.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,  
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    connectionLimit: 5
+    connectionLimit: 5, 
+    connectTimeout: 5000
 });
 
-app.post("/favorite", async (req, res) => {
+app.post("/favorite", async (req, res) => { 
   let conn;
   try {
     const {joke, date} = req.body;

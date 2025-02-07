@@ -170,6 +170,6 @@ node server.js
 - Add user authentication
 - Include joke rating system
 - Host website on a VM
-- Make a better background with JS canvas 
+- Make a better background with JS-canvas 
 
 
