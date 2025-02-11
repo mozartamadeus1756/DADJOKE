@@ -1,175 +1,275 @@
 
 # Dad Joke Application
 
-A fun web application that fetches random dad jokes and allows users to save their favorites. Built with Express.js, MariaDB, and vanilla JavaScript.
+A fun and interactive web application that delivers laughter through random dad jokes! Built with Express.js, MariaDB, and vanilla JavaScript, this application offers a seamless experience for users to discover, save, and manage their favorite dad jokes. With features like user authentication, personal joke collections, and a responsive design, it's the perfect platform for joke enthusiasts.
 
-## Features
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D%2014.0.0-brightgreen.svg)](https://nodejs.org/)
+[![Express Version](https://img.shields.io/badge/express-%5E4.17.1-blue.svg)](https://expressjs.com/)
 
-- Fetch random dad jokes from the icanhazdadjoke API
-- Save favorite jokes to a database
-- View all saved favorite jokes
-- Responsive design with a fun, playful interface
+## 🚀 Quick Start
 
-## Tech Stack
-
-- Frontend: HTML, CSS, JavaScript
-- Backend: Node.js, Express.js
-- Database: MariaDB
-- API: icanhazdadjoke
-
-## Installation
-
-1. Clone the repository
-2. Install dependencies:
 ```bash
+# Clone the repository
+git clone https://github.com/mozartamadeus1756/dad_joke.git
+
+# Install dependencies
+cd dad_joke
 npm install
+
+# Set up environment variables (see Configuration section)
+
+# Start the server
+node server.js
 ```
 
-3. Create a `.env` file in the root directory with your database credentials:
-```env
-DB_HOST='localhost'
-DB_USER='your_username'
-DB_PASSWORD='your_password'
-DB_NAME='dada_joke'
-DB_CONN_LIMIT=5
-```
+Visit `http://localhost:5502` to start enjoying dad jokes!
 
-4. Set up the database:
+## ✨ Features
+
+- **User Management**
+  - Secure registration and login system
+  - Personal user profiles
+  - Session-based authentication
+
+- **Joke System**
+  - Integration with icanhazdadjoke API
+  - Random joke generation
+  - Personal joke collection management
+
+- **User Interface**
+  - Clean and responsive design
+  - Intuitive navigation
+  - Animated transitions
+  - Mobile-friendly layout
+
+- **Security**
+  - Secure password hashing
+  - Protected API endpoints
+  - Data encryption
+  - SQL injection prevention
+
+## 🛠 Tech Stack
+
+### Frontend
+- HTML5 & CSS3 for structure and styling
+- Vanilla JavaScript for dynamic interactions
+- Responsive design principles
+- Modern CSS animations
+
+### Backend
+- Node.js runtime environment
+- Express.js web framework
+- RESTful API architecture
+- Session-based authentication
+
+### Database
+- MariaDB for data persistence
+- Structured query optimization
+- Referential integrity
+
+### External Services
+- icanhazdadjoke API for joke content
+- Environment variable management
+- Error logging and monitoring
+
+## 🔧 Installation & Configuration
+
+### Prerequisites
+- Node.js (>= 14.0.0)
+- MariaDB (>= 10.5)
+- npm (>= 6.0.0)
+
+### Installation Steps
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/yourusername/dad_joke.git
+   cd dad_joke
+   ```
+
+2. **Install Dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Environment Setup**
+   Create a `.env` file in the root directory:
+   ```env
+   DB_HOST='localhost'
+   DB_USER='your_username'
+   DB_PASSWORD='your_password'
+   DB_NAME='dada_joke'
+   DB_CONN_LIMIT=5
+   PORT=5502
+   SESSION_SECRET='your_session_secret'
+   ```
+
+4. **Database Setup**
 ```sql
 CREATE DATABASE dada_joke;
 USE dada_joke;
 
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
 CREATE TABLE jokes (
     joke_id INT AUTO_INCREMENT PRIMARY KEY,
-    joke BLOB NOT NULL,
-    date DATE NOT NULL
-);
+    joke TEXT NOT NULL,
+    date DATE NOT NULL,
+    user_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
 ```
 
 ## Project Structure
 
 ```plaintext
 dad_joke/
-├── index.html          # Main page
-├── favorites.html      # Favorites display page
+├── index.html          # Main landing page
+├── register.html       # User registration page
+├── login.html         # User login page
+├── favorites.html     # Favorites display page
 ├── script.js          # Main JavaScript
+├── register.js        # Registration page logic
+├── login.js          # Login page logic
 ├── favorites.js       # Favorites page JavaScript
 ├── style.css         # Main styles
-├── fav.css          # Favorites page styles
+├── register.css      # Registration page styles
+├── login.css        # Login page styles
+├── favorites.css    # Favorites page styles
 ├── server.js        # Express server
+├── config/          # Configuration files
+│   ├── database.js  # Database connection
+│   └── init.sql     # Database initialization
 └── .env            # Environment variables
 ```
 
-## Code Examples
+## 🚀 Development
 
-### Main Page (index.html)
-```html
-<body>
-    <button id="button" type="button">GET DADAJOKE</button>
-    <p id="punchline"></p>
-    <button id="favorite">❤️ Add to Favorites</button>
-    <button id="see-favorites">See Favorites</button>
-    <script src="script.js"></script>
-</body>
-```
+### Running the Application
 
-### Server Endpoints (server.js)
-```javascript
-// Fetch a new joke
-app.get("/get-joke", async (req, res) => {
-  try {
-    const response = await fetch('https://icanhazdadjoke.com/', {
-      headers: {
-        'Accept': 'application/json',
-        'User-Agent': 'Dad Joke Web App'
-      }
-    });
-    const data = await response.json();
-    res.json(data);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch joke' });
-  }
-});
-
-// Save a favorite joke
-app.post("/favorite", async (req, res) => {
-  let conn;
-  try {
-    const {joke, date} = req.body;
-    conn = await pool.getConnection();
-    await conn.query(
-      "INSERT INTO jokes (joke, date) VALUES (AES_ENCRYPT(?, SHA2('baldurerbest', 512)), ?)", 
-      [joke, date]
-    );
-    res.json({ success: true });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  } finally {
-    if (conn) await conn.release();
-  }
-});
-```
-
-### Styling Example (style.css)
-```css
-body {
-    display: flex;
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center;
-    height: 100vh; 
-    margin: 0; 
-    background-color: yellow;
-    font-family: 'Jersey 15', sans-serif;
-}
-
-.joke-card {
-    background-color: white;
-    padding: 15px;
-    margin: 10px 0; 
-    border-radius: 10px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    max-width: 500px; 
-    text-align: center;
-}
-```
-
-## Running the Application
-
-1. Start the server:
 ```bash
-node server.js
+# Development mode with nodemon
+npm run dev
+
+# Production mode
+npm start
 ```
 
-2. Access the application at `http://localhost:5502`
+The application will be available at `http://localhost:5502`
+
+### Development Guidelines
+
+1. **Code Style**
+   - Follow ESLint configuration
+   - Use meaningful variable names
+   - Comment complex logic
+
+2. **Git Workflow**
+   - Create feature branches
+   - Write descriptive commit messages
+   - Submit PRs for review
+
+3. **Testing**
+   - Write unit tests for new features
+   - Ensure all tests pass before committing
+   - Test across different browsers
 
 ## Features in Detail
 
-1. **Random Joke Generation**
-   - Click the "GET DADAJOKE" button to fetch a random joke
-   - Jokes are fetched from the icanhazdadjoke API
+### 1. User Authentication
+- Secure user registration with email validation
+- Password hashing for security
+- Session-based authentication
+- Protected routes for authenticated users
 
-2. **Favorite System**
-   - Save jokes you like with the "Add to Favorites" button
-   - View all saved jokes in the favorites page
-   - Jokes are encrypted in the database for security
+### 2. Random Joke Generation
+- Click the "GET DADAJOKE" button to fetch a random joke
+- Jokes are fetched from the icanhazdadjoke API
+- Clean presentation with animated transitions
 
-3. **Responsive Design**
-   - Mobile-friendly interface
-   - Clean, readable joke cards
-   - Playful yellow theme with Jersey font
+### 3. Favorite System
+- Save jokes to your personal collection
+- View all saved jokes in the favorites page
+- Delete jokes from your favorites
+- Jokes are associated with user accounts
+
+### 4. Responsive Design
+- Mobile-friendly interface
+- Clean, readable joke cards
+- Playful yellow theme with Jersey font
+- Smooth animations and transitions
 
 ## Security Features
 
+- Secure password hashing
+- Session-based authentication
 - Database encryption for stored jokes
 - Environment variable configuration
+- SQL injection prevention
 - Error handling for API and database operations
 
-## Future Improvements
+## API Endpoints
 
-- Add user authentication
-- Include joke rating system
-- Host website on a VM
-- Make a better background with JS-canvas 
+### Authentication
+- `POST /api/register` - User registration
+- `POST /api/login` - User login
+- `GET /api/logout` - User logout
+
+### Jokes
+- `GET /api/joke` - Get a random joke
+- `POST /api/favorites` - Save a joke to favorites
+- `GET /api/favorites` - Get user's favorite jokes
+- `DELETE /api/favorites/:id` - Remove a joke from favorites
+
+## 🔄 Troubleshooting
+
+### Common Issues
+
+1. **Database Connection Errors**
+   - Verify MariaDB is running
+   - Check credentials in .env file
+   - Ensure database and tables exist
+
+2. **API Rate Limiting**
+   - Implement proper error handling
+   - Add request caching
+   - Use appropriate delay between requests
+
+3. **Authentication Issues**
+   - Clear browser cookies
+   - Check session configuration
+   - Verify user credentials
+
+## 🎯 Future Roadmap
+
+### Planned Features
+- ⭐ Joke rating system
+- 🔍 Advanced search functionality
+- 🌓 Dark mode theme
+- 📱 Mobile application
+- 🔄 Social sharing integration
+- 📊 User statistics dashboard
+
+### Technical Improvements
+- 🚀 Performance optimization
+- 🎨 Enhanced UI/UX with Canvas
+- 🔐 OAuth integration
+- 📦 Docker containerization
+- 🤖 API rate limiting
+- 📈 Analytics integration
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License.
 
 
