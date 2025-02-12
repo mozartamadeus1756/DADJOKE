@@ -273,3 +273,41 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 This project is licensed under the MIT License.
 
 
+
+## ❓ Frequently Asked Questions (FAQ)
+
+### Getting Started
+**Q: How do I install and run the application?**
+A: Clone the repository, run `npm install` to install dependencies, and use `npm start` to launch the application. Make sure you have Node.js installed.
+
+**Q: What are the system requirements?**
+A: You need Node.js (v12 or higher) and a modern web browser. The application works on Windows, macOS, and Linux.
+
+### User Authentication
+**Q: Do I need to create an account to use the application?**
+A: Yes, you need to register an account to save favorite jokes and access personalized features.
+
+**Q: How secure is my account information?**
+A: We use secure password hashing, session-based authentication, and database encryption to protect your information.
+
+### Joke Features
+**Q: Where do the jokes come from?**
+A: Jokes are sourced from the icanhazdadjoke API, ensuring a large and regularly updated collection.
+
+**Q: Can I save my favorite jokes?**
+A: Yes! Once logged in, you can save jokes to your favorites and access them anytime from the favorites page.
+
+**Q: How many jokes can I save?**
+A: There's no limit to the number of jokes you can save to your favorites.
+
+### Technical Support
+**Q: What should I do if I can't load any jokes?**
+A: Check your internet connection, ensure you're logged in, and try refreshing the page. If issues persist, clear your browser cache.
+
+**Q: How can I report a bug or suggest a feature?**
+A: You can submit issues through our GitHub repository or contact the development team.
+
+**Q: Is the application mobile-friendly?**
+A: Yes, the application is responsive and works well on both desktop and mobile devices.
+
+

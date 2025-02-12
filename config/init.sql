@@ -1,9 +1,14 @@
 CREATE TABLE IF NOT EXISTS users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    user_id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255),
+    password VARCHAR(255)
 );
 
-ALTER TABLE jokes ADD COLUMN IF NOT EXISTS user_id INT,
-ADD FOREIGN KEY (user_id) REFERENCES users(id);
+CREATE TABLE IF NOT EXISTS jokes (
+    joke_id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    joke TEXT NOT NULL,
+    date DATE,
+    user_id INT(11),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+

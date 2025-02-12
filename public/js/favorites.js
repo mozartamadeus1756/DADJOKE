@@ -28,15 +28,13 @@ function displayFavorites(jokes) {
         container.innerHTML = "<p>No favorite jokes yet!</p>";
         return;
     }
-    
-    jokes.forEach(joke => {
-        let formattedDate = new Date(joke.date).toISOString().split('T')[0];  
 
+    jokes.forEach(joke => {
         const jokeDiv = document.createElement('div');
         jokeDiv.className = 'joke-card';
         jokeDiv.innerHTML = `
             <p class="joke-text">${joke.joke}</p>
-            <p class="joke-date">Saved on: ${formattedDate}</p>
+            <p class="joke-date">Saved on: ${joke.date}</p>
         `;
         container.appendChild(jokeDiv);
     });
