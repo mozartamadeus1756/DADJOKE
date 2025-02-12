@@ -7,7 +7,7 @@ A fun and interactive web application that delivers laughter through random dad 
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D%2014.0.0-brightgreen.svg)](https://nodejs.org/)
 [![Express Version](https://img.shields.io/badge/express-%5E4.17.1-blue.svg)](https://expressjs.com/)
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # Clone the repository
@@ -25,7 +25,7 @@ node server.js
 
 Visit `http://localhost:5502` to start enjoying dad jokes!
 
-## ✨ Features
+## Features
 
 - **User Management**
   - Secure registration and login system
@@ -49,7 +49,7 @@ Visit `http://localhost:5502` to start enjoying dad jokes!
   - Data encryption
   - SQL injection prevention
 
-## 🛠 Tech Stack
+## Tech Stack
 
 ### Frontend
 - HTML5 & CSS3 for structure and styling
@@ -73,7 +73,7 @@ Visit `http://localhost:5502` to start enjoying dad jokes!
 - Environment variable management
 - Error logging and monitoring
 
-## 🔧 Installation & Configuration
+## Installation & Configuration
 
 ### Prerequisites
 - Node.js (>= 14.0.0)
@@ -149,7 +149,7 @@ dad_joke/
 └── .env            # Environment variables
 ```
 
-## 🚀 Development
+## Development
 
 ### Running the Application
 
@@ -227,7 +227,7 @@ The application will be available at `http://localhost:5502`
 - `GET /api/favorites` - Get user's favorite jokes
 - `DELETE /api/favorites/:id` - Remove a joke from favorites
 
-## 🔄 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -246,23 +246,23 @@ The application will be available at `http://localhost:5502`
    - Check session configuration
    - Verify user credentials
 
-## 🎯 Future Roadmap
+## Future Roadmap
 
 ### Planned Features
-- ⭐ Joke rating system
-- 🔍 Advanced search functionality
-- 🌓 Dark mode theme
-- 📱 Mobile application
-- 🔄 Social sharing integration
-- 📊 User statistics dashboard
+- Joke rating system
+- Advanced search functionality
+- Dark mode theme
+- Mobile application
+- Social sharing integration
+- User statistics dashboard
 
 ### Technical Improvements
-- 🚀 Performance optimization
-- 🎨 Enhanced UI/UX with Canvas
-- 🔐 OAuth integration
-- 📦 Docker containerization
-- 🤖 API rate limiting
-- 📈 Analytics integration
+- Performance optimization
+- Enhanced UI/UX with Canvas
+- OAuth integration
+- Docker containerization
+- API rate limiting
+- Analytics integration
 
 ## Contributing
 
@@ -274,7 +274,7 @@ This project is licensed under the MIT License.
 
 
 
-## ❓ Frequently Asked Questions (FAQ)
+## Frequently Asked Questions (FAQ)
 
 ### Getting Started
 **Q: How do I install and run the application?**
