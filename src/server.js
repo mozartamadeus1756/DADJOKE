@@ -77,12 +77,12 @@ app.post('/login', async (req, res) => {
 app.post("/favorite", async (req, res) => { 
   let conn;
   try {
-    const { joke, date } = req.body; //  userId
-    console.log(`received joke, ${joke}, and date ${date}`);  // for user ${userId}
+    const { joke, date } = req.body; 
+    console.log(`received joke, ${joke}, and date ${date}`);  
 
 
     conn = await pool.getConnection();
-    await conn.query("INSERT INTO jokes (joke, date) VALUES (?, ?)", [joke, date]); // userId,
+    await conn.query("INSERT INTO jokes (joke, date) VALUES (?, ?)", [joke, date]); 
     res.json({ success: true });
     
   } catch (err) {
@@ -99,14 +99,13 @@ app.post("/favorite", async (req, res) => {
 app.get("/see-favorites", async (req, res) => {
   let conn;
   try {
-      // const userId = req.query.userId;
       conn = await pool.getConnection();
       const rows = await conn.query(`
         SELECT joke_id, 
         joke,
         DATE_FORMAT(date, '%Y-%m-%d') as date 
         FROM jokes 
-        ORDER BY date DESC`); //[userId]);
+        ORDER BY date DESC`); 
     res.json(rows);
 
     } catch (error) {
