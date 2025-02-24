@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function fetchFavorites() {
-    fetch("http://localhost:5502/see-favorites")
+    fetch("http://localhost:5501/see-favorites")
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);

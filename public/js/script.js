@@ -39,7 +39,7 @@ document.addEventListener("click", function(event) {
         };
         console.log(favoriteJokeData);
 
-        fetch("http://localhost:5502/favorite", {
+        fetch("http://localhost:5501/favorite", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -54,7 +54,7 @@ document.addEventListener("click", function(event) {
 document.addEventListener("click", function(event) {
     if (!event.target.matches("#see-favorites")) return;
 
-    fetch("http://localhost:5502/see-favorites", { 
+    fetch("http://localhost:5501/see-favorites", { 
         method: "GET",
         headers: {
             "Content-Type": "application/json"

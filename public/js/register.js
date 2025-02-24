@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const response = await fetch('http://localhost:5502/register', {
+            const response = await fetch('http://localhost:5501/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (data.success) {
                 alert('Registration successful! Please log in.');
-                window.location.href = "http://localhost:5502/index.html";
+                window.location.href = "http://localhost:5501/login.html";
             } else {
                 alert(data.message || 'Registration failed!');
             }

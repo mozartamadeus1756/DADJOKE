@@ -23,7 +23,7 @@ npm install
 node server.js
 ```
 
-Visit `http://localhost:5502` to start enjoying dad jokes!
+Visit `http://localhost:5501` to start enjoying dad jokes!
 
 ## Features
 
@@ -161,7 +161,7 @@ npm run dev
 npm start
 ```
 
-The application will be available at `http://localhost:5502`
+The application will be available at `http://localhost:5501`
 
 ### Development Guidelines
 

@@ -1,16 +1,27 @@
 require('dotenv').config();
+const mariadb = require('mariadb');
 const express = require('express')
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
-const pool = require('../config/database');
-const app = express();
-const port = 5502;
 
-app.use(express.static('public'));
+const app = express();
+const port = process.env.PORT || 5501;
+
+const pool = mariadb.createPool({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    connectionLimit: process.env.DB_CONN_LIMIT
+});
+
+app.use(express.static('../public'));
+app.get('/', (req, res) => {
+    res.sendFile('login.html', { root: '../public' });
+});
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.json());
 app.use(cors());
 
 app.post('/register', async (req, res) => {
@@ -93,8 +104,6 @@ app.post("/favorite", async (req, res) => {
   }
 });
 
-
-  
 
 app.get("/see-favorites", async (req, res) => {
   let conn;
