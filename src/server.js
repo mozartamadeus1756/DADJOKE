@@ -17,7 +17,7 @@ const pool = mariadb.createPool({
 });
 
 app.use(express.static('../public'));
-app.get('/', (req, res) => {
+app.get('/', (res) => {
     res.sendFile('login.html', { root: '../public' });
 });
 app.use(bodyParser.json());
@@ -105,7 +105,7 @@ app.post("/favorite", async (req, res) => {
 });
 
 
-app.get("/see-favorites", async (req, res) => {
+app.get("/see-favorites", async (res) => {
   let conn;
   try {
       conn = await pool.getConnection();
