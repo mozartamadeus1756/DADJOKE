@@ -10,9 +10,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Favorite Jokes</h1>
-    <div id="favorites-container"></div>
-    <button id="back-button" type="button" onclick="window.location.href='joke.html'">Back</button>
+    <main role="main">
+        <h1>Favorite Jokes</h1>
+        <div id="favorites-container" role="region" aria-label="List of favorite jokes"></div>
+        <nav role="navigation">
+            <button id="back-button" type="button" onclick="window.location.href='joke.html'" aria-label="Return to jokes page">Back to Jokes</button>
+        </nav>
+    </main>
     <script src="js/favorites.js"></script>
 </body>
 </html>

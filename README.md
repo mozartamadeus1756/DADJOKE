@@ -151,3 +151,37 @@ Contributions are welcome! Please read our contributing guidelines before submit
 This project is licensed under the ISC License.
 
 
+
+## Accessibility & Compliance
+
+### Web Accessibility (WCAG 2.1)
+- Screen reader compatibility with ARIA labels
+- High contrast color schemes
+- Keyboard navigation support
+- Resizable text without loss of functionality
+- Alternative text for all images
+- Clear heading hierarchy
+
+### Privacy & Data Protection
+- GDPR compliant user data handling
+- Clear privacy policy
+- User data export functionality
+- Right to be forgotten implementation
+- Secure data storage with encryption
+- Transparent data usage policies
+
+### Assistive Technology Support
+- Compatible with major screen readers (NVDA, JAWS, VoiceOver)
+- Support for browser zoom up to 200%
+- Focus indicators for keyboard navigation
+- No time-limited functions
+- Error identification and suggestions
+
+### Universal Design Principles
+- Simple and intuitive interface
+- Perceptible information
+- Tolerance for error
+- Low physical effort
+- Size and space for approach and use
+
+

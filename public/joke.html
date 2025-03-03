@@ -10,12 +10,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
 </head>
 <body>
-    <button id="logout-btn" onclick="window.location.href='login.html'">Logout</button>
+    <header role="banner">
+        <nav role="navigation" aria-label="User actions">
+            <button id="logout-btn" onclick="window.location.href='login.html'" aria-label="Logout from your account">Logout</button>
+        </nav>
+    </header>
 
-    <button id="button" type="button">GET DADAJOKE</button>
-    <p id="punchline"></p> 
-    <button id="favorite" type="button">Favorite</button>
-    <button id="see-favorites" type="button" onclick="window.location.href='favorites.html'">See Favorites</button>
+    <main role="main">
+        <section aria-label="Dad Joke Section">
+            <button id="button" type="button" aria-label="Get a new dad joke">GET DADAJOKE</button>
+            <p id="punchline" aria-live="polite" role="status"></p>
+            <div class="joke-actions" role="group" aria-label="Joke actions">
+                <button id="favorite" type="button" aria-label="Save this joke to favorites">Favorite</button>
+                <button id="see-favorites" type="button" onclick="window.location.href='favorites.html'" aria-label="View your favorite jokes">See Favorites</button>
+            </div>
+        </section>
+    </main>
 
     <script src="js/script.js"></script>
 </body>
