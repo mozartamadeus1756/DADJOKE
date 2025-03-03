@@ -11,25 +11,23 @@ This application provides a platform for users to discover random dad jokes, sav
 
 ### User Management
 - Secure registration and login system
-- Personal user profiles
-- Session-based authentication
+- Password encryption with bcrypt
+- Email-based authentication
 
 ### Joke System
-- Integration with icanhazdadjoke API
-- Random joke generation
-- Personal joke collection management
+- Save favorite jokes
+- View saved jokes history
+- Date tracking for saved jokes
 
 ### User Interface
 - Clean and responsive design
 - Intuitive navigation
-- Animated transitions
 - Mobile-friendly layout
 
 ### Security
 - Secure password hashing
 - Protected API endpoints
-- Data encryption
-- SQL injection prevention
+- SQL injection prevention through parameterized queries
 
 ## Tech Stack
 
@@ -37,12 +35,7 @@ This application provides a platform for users to discover random dad jokes, sav
 - Node.js runtime environment
 - Express.js web framework
 - RESTful API architecture
-- Session-based authentication
-
-### Database
 - MariaDB for data persistence
-- Structured query optimization
-- Referential integrity
 
 ## Installation & Configuration
 
@@ -70,13 +63,7 @@ cp .env.example .env
 # Edit .env with your database credentials and other configurations
 ```
 
-4. Initialize the database
-```bash
-# Run the database initialization script
-mysql -u [username] -p [database_name] < config/init.sql
-```
-
-5. Start the application
+4. Start the application
 ```bash
 npm start
 ```
@@ -85,23 +72,25 @@ npm start
 
 ```plaintext
 dad_joke/
-├── index.html          # Main landing page
-├── register.html       # User registration page
-├── login.html         # User login page
-├── favorites.html     # Favorites display page
-├── script.js          # Main JavaScript
-├── register.js        # Registration page logic
-├── login.js          # Login page logic
-├── favorites.js       # Favorites page JavaScript
-├── style.css         # Main styles
-├── register.css      # Registration page styles
-├── login.css        # Login page styles
-├── favorites.css    # Favorites page styles
-├── server.js        # Express server
-├── config/          # Configuration files
-│   ├── database.js  # Database connection
-│   └── init.sql     # Database initialization
-└── .env            # Environment variables
+├── public/
+│   ├── css/
+│   │   ├── favorites.css
+│   │   ├── login.css
+│   │   ├── register.css
+│   │   └── style.css
+│   ├── js/
+│   │   ├── favorites.js
+│   │   ├── login.js
+│   │   ├── register.js
+│   │   └── script.js
+│   ├── favorites.html
+│   ├── joke.html
+│   ├── login.html
+│   └── register.html
+├── src/
+│   └── server.js
+├── package.json
+└── .env
 ```
 
 ## API Documentation
@@ -110,29 +99,29 @@ dad_joke/
 
 #### POST /register
 - Register a new user
-- Required fields: email, password
+- Required fields: username, email, password
+- Returns: Success message
 
 #### POST /login
 - Authenticate user
-- Required fields: email, password
+- Required fields: username, email, password
+- Returns: Success/failure message
 
 ### Joke Management Endpoints
 
 #### POST /favorite
 - Save a joke to favorites
 - Required fields: joke, date
+- Returns: Success status
 
 #### GET /see-favorites
 - Retrieve user's favorite jokes
-- Returns: Array of jokes with IDs and dates
+- Returns: Array of jokes with IDs and formatted dates
 
 ## Security Features
 
-- Secure password hashing
-- Session-based authentication
-- Database encryption for stored jokes
-- Environment variable configuration
-- SQL injection prevention
+- Password hashing with bcrypt
+- SQL injection prevention through parameterized queries
 - Error handling for API and database operations
 
 ## Troubleshooting
@@ -144,25 +133,10 @@ dad_joke/
    - Check credentials in .env file
    - Ensure database and tables exist
 
-2. **API Rate Limiting**
-   - Implement proper error handling
-   - Add request caching
-   - Use appropriate delay between requests
-
-3. **Authentication Issues**
-   - Clear browser cookies
-   - Check session configuration
-   - Verify user credentials
-
-## Future Roadmap
-
-### Planned Features
-- Joke rating system
-- Advanced search functionality
-- Dark mode theme
-- Mobile application
-- Social sharing integration
-- User statistics dashboard
+2. **Authentication Issues**
+   - Verify all required fields are provided
+   - Check email and password combination
+   - Ensure proper error handling
 
 ## Contributing
 

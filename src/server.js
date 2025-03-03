@@ -17,7 +17,7 @@ const pool = mariadb.createPool({
 });
 
 app.use(express.static('../public'));
-app.get('/', (res) => {
+app.get('/', (req, res) => {
     res.sendFile('login.html', { root: '../public' });
 });
 app.use(bodyParser.json());
@@ -27,13 +27,13 @@ app.use(cors());
 app.post('/register', async (req, res) => {
   let conn;
   try {
-      const { email, password } = req.body;
+      const { username, email, password } = req.body;
       const hashedPassword = await bcrypt.hash(password, 10);
 
       conn = await pool.getConnection();
       await conn.query(
-          'INSERT INTO users (email, password) VALUES (?, ?)',
-          [email, hashedPassword]
+          'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
+          [username, email, hashedPassword]
       );
 
       res.json({ success: true, message: 'user registered successfully' });
@@ -46,12 +46,12 @@ app.post('/register', async (req, res) => {
 });
 
 app.post('/login', async (req, res) => {
-  const { email, password } = req.body;
+  const { username, email, password } = req.body;
   let conn;
-  if (!email || !password) {
+  if (!username || !email || !password) {
     return res.status(400).json({
       success: false,
-      message: 'email and password are required'
+      message: 'username, email and password are required'
     });
   }
   try {
@@ -105,7 +105,7 @@ app.post("/favorite", async (req, res) => {
 });
 
 
-app.get("/see-favorites", async (res) => {
+app.get("/see-favorites", async (req, res) => {
   let conn;
   try {
       conn = await pool.getConnection();
