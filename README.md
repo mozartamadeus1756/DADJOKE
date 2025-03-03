@@ -48,7 +48,7 @@ This application provides a platform for users to discover random dad jokes, sav
 
 1. Clone the repository
 ```bash
-git clone [repository-url]
+git clone https://github.com/mozartamadeus1756/Dada-Joke.git
 cd dad_joke
 ```
 
@@ -59,8 +59,12 @@ npm install
 
 3. Configure environment variables
 ```bash
-cp .env.example .env
-# Edit .env with your database credentials and other configurations
+DB_HOST='localhost'
+DB_USER='your-user'
+DB_PASSWORD='your-password'
+DB_NAME='your-database-name'
+DB_CONN_LIMIT=5
+
 ```
 
 4. Start the application
@@ -70,7 +74,7 @@ npm start
 
 ## Project Structure
 
-```plaintext
+```
 dad_joke/
 ├── public/
 │   ├── css/
