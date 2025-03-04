@@ -20,6 +20,57 @@ body {
     margin: 0 20px;
 }
 
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.form-group label {
+    width: 80px;
+    margin-right: 1rem;
+    font-weight: bold;
+}
+
+.form-group input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.login-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.login-btn:hover {
+    background-color: #c0392b;
+}
+
+.register-link {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.register-btn {
+    color: #e74c3c;
+    text-decoration: none;
+}
+
+.register-btn:hover {
+    text-decoration: underline;
+}
+
 @media screen and (max-width: 768px) {
     h1 {
         font-size: 24px;
