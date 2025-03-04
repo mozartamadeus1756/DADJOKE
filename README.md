@@ -10,9 +10,10 @@ This application provides a platform for users to discover random dad jokes, sav
 ## Features
 
 ### User Management
-- Secure registration and login system
-- Password encryption with bcrypt
-- Email-based authentication
+- Secure registration and login system with hashed credentials
+- Password and username encryption using bcrypt
+- Email-based authentication with verification
+- Unique salted hashes for each user
 
 ### Joke System
 - Save favorite jokes
@@ -25,9 +26,10 @@ This application provides a platform for users to discover random dad jokes, sav
 - Mobile-friendly layout
 
 ### Security
-- Secure password hashing
-- Protected API endpoints
+- Secure password and username hashing for enhanced privacy
+- Protected API endpoints with authentication middleware
 - SQL injection prevention through parameterized queries
+- Salted hash implementation for user credentials
 
 ## Tech Stack
 
@@ -64,7 +66,6 @@ DB_USER='your-user'
 DB_PASSWORD='your-password'
 DB_NAME='your-database-name'
 DB_CONN_LIMIT=5
-
 ```
 
 4. Start the application
@@ -128,30 +129,6 @@ dad_joke/
 - SQL injection prevention through parameterized queries
 - Error handling for API and database operations
 
-## Troubleshooting
-
-### Common Issues
-
-1. **Database Connection Errors**
-   - Verify MariaDB is running
-   - Check credentials in .env file
-   - Ensure database and tables exist
-
-2. **Authentication Issues**
-   - Verify all required fields are provided
-   - Check email and password combination
-   - Ensure proper error handling
-
-## Contributing
-
-Contributions are welcome! Please read our contributing guidelines before submitting pull requests.
-
-## License
-
-This project is licensed under the ISC License.
-
-
-
 ## Accessibility & Compliance
 
 ### Web Accessibility (WCAG 2.1)
@@ -183,5 +160,27 @@ This project is licensed under the ISC License.
 - Tolerance for error
 - Low physical effort
 - Size and space for approach and use
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Database Connection Errors**
+   - Verify MariaDB is running
+   - Check credentials in .env file
+   - Ensure database and tables exist
+
+2. **Authentication Issues**
+   - Verify all required fields are provided
+   - Check email and password combination
+   - Ensure proper error handling
+
+## Contributing
+
+Contributions are welcome! Please read our contributing guidelines before submitting pull requests.
+
+## License
+
+This project is licensed under the ISC License.
 
 
