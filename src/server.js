@@ -30,18 +30,16 @@ app.post('/register', async (req, res) => {
   try {
       const { username, email, password } = req.body;
       const hashedPassword = await bcrypt.hash(password, 10);
-      const hashedEmail = await bcrypt.hash(email, 10);
-      const hashedUsername = await bcrypt.hash(username, 10);
 
       conn = await pool.getConnection();
       await conn.query(
           'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
-          [hashedUsername, hashedEmail, hashedPassword]
+          [username, email, hashedPassword]
       );
 
       res.json({ success: true, message: 'user registered successfully' });
   } catch (error) {
-      console.error('registraation error:', error);
+      console.error('registration error:', error);
       res.status(500).json({ success: false, message: 'registration failed' });
   } finally {
       if (conn) await conn.release();
@@ -59,15 +57,22 @@ app.post('/login', async (req, res) => {
   }
   try {
     conn = await pool.getConnection();
-    const [user] = await conn.query(
-      'SELECT user_id, email, password FROM users WHERE email = ?',
-      [email]
-    );
-
-    if (!user || !user.password || !(await bcrypt.compare(password, user.password))) {
+    const users = await conn.query('SELECT user_id, username, email, password FROM users WHERE username = ? AND email = ?', [username, email]);
+    
+    if (users.length === 0) {
       return res.status(401).json({
         success: false,
-        message: 'ivalid credentials'
+        message: 'invalid credentials'
+      });
+    }
+
+    const user = users[0];
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatch) {
+      return res.status(401).json({
+        success: false,
+        message: 'invalid credentials'
       });
     }
 
@@ -86,7 +91,6 @@ app.post('/login', async (req, res) => {
     if (conn) await conn.release();
   }
 });
-
 
 app.post("/favorite", async (req, res) => { 
   let conn;

@@ -19,7 +19,23 @@ body {
     background-color: white; 
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     font-family: 'Jersey 15', sans-serif; 
-    position: absolute;
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+}
+
+#favorite, #see-favorites, #logout-btn {
+    display: block;
+    margin: 3px auto;
+    color: red;
+    font-size: 24px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: white;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    font-family: 'Jersey 15', sans-serif;
 }
 
 @media screen and (max-width: 768px) {
@@ -30,8 +46,8 @@ body {
 
     #punchline {
         font-size: 20px;
-        margin-top: 20vh;
-        padding: 0 20px;
+        margin-top: 10vh;
+        padding: 0 10px;
     }
 
     #favorite {
@@ -53,7 +69,7 @@ body {
 
     #punchline {
         font-size: 18px;
-        margin-top: 15vh;
+        margin-top: 20vh;
     }
 
     #favorite {
@@ -80,9 +96,16 @@ button:hover,
 
 #punchline {
     color: black;
-    font-size: 25px; 
-    margin-top: 30vh; 
+    font-size: 20px; 
+    margin: 5vh auto;
     text-align: center;
+    max-width: 80%;
+    line-height: 1.4;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
 }
 
 #favorite{

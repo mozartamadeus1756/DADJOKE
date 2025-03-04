@@ -1,4 +1,4 @@
-// når kanppen trykkees 
+
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.querySelector('.login-form');
     loginForm.addEventListener('submit', async (e) => {
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             const data = await response.json();
             if (data.success) {
-                localStorage.setItem('userId', data.userId);
+                //localStorage.setItem('userId', data.userId);
                 window.location.href = 'joke.html';
             } else {
                 alert('Login failed: ' + data.message);
