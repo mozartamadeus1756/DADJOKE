@@ -23,18 +23,20 @@ app.get('/', (req, res) => {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors());
+app.use(cors());  
 
 app.post('/register', async (req, res) => {
   let conn;
   try {
       const { username, email, password } = req.body;
       const hashedPassword = await bcrypt.hash(password, 10);
+      const hashedEmail = await bcrypt.hash(email, 10);
+      const hashedUsername = await bcrypt.hash(username, 10);
 
       conn = await pool.getConnection();
       await conn.query(
           'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
-          [username, email, hashedPassword]
+          [hashedUsername, hashedEmail, hashedPassword]
       );
 
       res.json({ success: true, message: 'user registered successfully' });

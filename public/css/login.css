@@ -14,9 +14,55 @@ body {
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    width: 90%;
     max-width: 400px;
     text-align: center;
+    margin: 0 20px;
+}
+
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    input {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .login-btn {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .login-container {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 20px;
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    input {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .login-btn {
+        font-size: 12px;
+        padding: 8px 16px;
+    }
+
+    .register-link {
+        font-size: 12px;
+    }
 }
 
 h1 {

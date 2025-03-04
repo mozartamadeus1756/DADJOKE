@@ -22,6 +22,51 @@ body {
     position: absolute;
 }
 
+@media screen and (max-width: 768px) {
+    #button {
+        font-size: 30px;
+        padding: 15px 25px;
+    }
+
+    #punchline {
+        font-size: 20px;
+        margin-top: 20vh;
+        padding: 0 20px;
+    }
+
+    #favorite {
+        font-size: 24px;
+        padding: 8px 12px;
+    }
+
+    #see-favorites, #logout-btn {
+        font-size: 16px;
+        padding: 8px 12px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #button {
+        font-size: 24px;
+        padding: 12px 20px;
+    }
+
+    #punchline {
+        font-size: 18px;
+        margin-top: 15vh;
+    }
+
+    #favorite {
+        font-size: 20px;
+        padding: 6px 10px;
+    }
+
+    #see-favorites, #logout-btn {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+}
+
 button:hover,
 #button:hover,
 #favorite:hover,
