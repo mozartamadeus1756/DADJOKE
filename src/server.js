@@ -31,17 +31,13 @@ app.post('/register', async (req, res) => {
   try {
       const { username, email, password } = req.body;
 
+      const hashedUsername = crypto.createHash('sha256').update(username).digest('hex');
+      const hashedEmail = crypto.createHash('sha256').update(email).digest('hex');
       const hashedPassword = await bcrypt.hash(password, 10);
-
-      const usernameSalt = crypto.randomBytes(16).toString('hex');
-      const emailSalt = crypto.randomBytes(16).toString('hex');
-      const hashedUsername = await bcrypt.hash(username + usernameSalt, 10);
-      const hashedEmail = await bcrypt.hash(email + emailSalt, 10);
-
       conn = await pool.getConnection();
       await conn.query(
-          'INSERT INTO users (username, email, password, usernameSalt, emailSalt) VALUES (?, ?, ?, ?, ?)',
-          [hashedUsername, hashedEmail, hashedPassword, usernameSalt, emailSalt]
+          'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
+          [hashedUsername, hashedEmail, hashedPassword]
       );
 
       res.json({ success: true, message: 'user registered successfully' });
@@ -63,8 +59,12 @@ app.post('/login', async (req, res) => {
     });
   }
   try {
+
+    const hashedUsername = crypto.createHash('sha256').update(username).digest('hex');
+    const hashedEmail = crypto.createHash('sha256').update(email).digest('hex');
+
     conn = await pool.getConnection();
-    const users = await conn.query('SELECT user_id, username, email, password, username_salt, email_salt FROM users WHERE username = ? AND email = ?', [username, email]);
+    const users = await conn.query('SELECT user_id, username, email, password FROM users WHERE username = ? AND email = ?', [hashedUsername, hashedEmail]);
     
     if (users.length === 0) {
       return res.status(401).json({
@@ -74,14 +74,9 @@ app.post('/login', async (req, res) => {
     }
 
     const user = users[0];
-    const hashedUsername = await bcrypt.hash(username + user.username_salt, 10);
-    const hashedEmail = await bcrypt.hash(email + user.email_salt, 10);
-
-    const usernameMatch = hashedUsername === user.username;
-    const emailMatch = hashedEmail === user.email;
     const passwordMatch = await bcrypt.compare(password, user.password);
 
-    if (!passwordMatch || !usernameMatch || !emailMatch) {
+    if (!passwordMatch) {
       return res.status(401).json({
         success: false,
         message: 'invalid credentials'
