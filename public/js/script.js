@@ -1,5 +1,12 @@
 let currentJoke = '';  
 
+document.addEventListener('DOMContentLoaded', function() {
+    const username = localStorage.getItem('username');
+    if (username) {
+        document.getElementById('welcome-message').textContent = `Welcome back, ${username}!`;
+    }
+});
+
 document.addEventListener("click", function(event) {
     if (!event.target.matches("#button")) return;
     console.log("Button was pressed");
