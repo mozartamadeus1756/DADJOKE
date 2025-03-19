@@ -96,7 +96,7 @@ button:hover,
 #favorite:hover,
 #see-favorites:hover,
 #logout-btn:hover {
-    background-color: #ffecec;
+    background-color: #e2aeae;
     transform: translateY(-2px);
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
     transition: all 0.3s ease;
@@ -156,4 +156,10 @@ button:hover,
     background-color: white;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     font-family: 'Jersey 15', sans-serif;
+}
+
+#welcome-message{
+    display: flex;
+    margin-bottom: 50px;
+    font-size: 30px;
 }
