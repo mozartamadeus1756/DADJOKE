@@ -5,7 +5,7 @@ A web application for discovering, saving, and managing your favorite dad jokes 
 
 ## Overview
 
-This application provides a platform for users to discover random dad jokes, save their favorites, and manage their personal collection. Built with modern web technologies, it offers a secure and user-friendly experience.
+This application provides a platform for users to discover random dad jokes, save their favorites, and manage their personal collection. Built with modern web technologies, it offers a secure and user-friendly experience with a playful design theme.
 
 ## Features
 
@@ -19,11 +19,15 @@ This application provides a platform for users to discover random dad jokes, sav
 - Save favorite jokes
 - View saved jokes history
 - Date tracking for saved jokes
+- Interactive joke display with dynamic updates
 
 ### User Interface
-- Clean and responsive design
-- Intuitive navigation
-- Mobile-friendly layout
+- Playful design with yellow background theme
+- Custom Jersey 15 font family for enhanced readability
+- Responsive design with mobile-first approach
+- Interactive button animations and hover effects
+- Clean and intuitive navigation
+- Consistent color scheme (yellow background, red text, white buttons)
 
 ### Security
 - Secure password and username hashing for enhanced privacy
@@ -32,6 +36,12 @@ This application provides a platform for users to discover random dad jokes, sav
 - Salted hash implementation for user credentials
 
 ## Tech Stack
+
+### Frontend
+- HTML5
+- CSS3 with modern features (Flexbox, Media Queries)
+- JavaScript (ES6+)
+- Responsive design breakpoints (768px and 480px)
 
 ### Backend
 - Node.js runtime environment
@@ -50,7 +60,7 @@ This application provides a platform for users to discover random dad jokes, sav
 
 1. Clone the repository
 ```bash
-git clone https://github.com/mozartamadeus1756/Dada-Joke.git
+git clone https://github.com/mozartamadeus1756/DADJOKE.git
 cd dad_joke
 ```
 
@@ -98,6 +108,43 @@ dad_joke/
 └── .env
 ```
 
+## UI Components
+
+### Buttons
+- Main joke button: Large size (40px font) with red text
+- Favorite button: Medium size (30px font) with red text
+- Navigation buttons: Standard size (20px font) with red text
+- All buttons feature:
+  - White background
+  - Box shadow effects
+  - Hover animations
+  - Border radius for rounded corners
+
+### Layout
+- Centered content with flexbox
+- Responsive containers
+- Adaptive spacing for different screen sizes
+- Fixed position navigation elements
+
+### Typography
+- Jersey 15 font family throughout the application
+- Varied font sizes for hierarchy:
+  - Main buttons: 40px
+  - Secondary buttons: 30px
+  - Navigation: 20px
+  - Content text: Responsive sizing
+
+### Responsive Design
+- Desktop-first approach with mobile breakpoints
+- Tablet breakpoint: 768px
+  - Reduced font sizes
+  - Adjusted padding and margins
+  - Optimized button sizes
+- Mobile breakpoint: 480px
+  - Further size reductions
+  - Simplified layout
+  - Enhanced touch targets
+
 ## API Documentation
 
 ### Authentication Endpoints
@@ -129,38 +176,6 @@ dad_joke/
 - SQL injection prevention through parameterized queries
 - Error handling for API and database operations
 
-## Accessibility & Compliance
-
-### Web Accessibility (WCAG 2.1)
-- Screen reader compatibility with ARIA labels
-- High contrast color schemes
-- Keyboard navigation support
-- Resizable text without loss of functionality
-- Alternative text for all images
-- Clear heading hierarchy
-
-### Privacy & Data Protection
-- GDPR compliant user data handling
-- Clear privacy policy
-- User data export functionality
-- Right to be forgotten implementation
-- Secure data storage with encryption
-- Transparent data usage policies
-
-### Assistive Technology Support
-- Compatible with major screen readers (NVDA, JAWS, VoiceOver)
-- Support for browser zoom up to 200%
-- Focus indicators for keyboard navigation
-- No time-limited functions
-- Error identification and suggestions
-
-### Universal Design Principles
-- Simple and intuitive interface
-- Perceptible information
-- Tolerance for error
-- Low physical effort
-- Size and space for approach and use
-
 ## Troubleshooting
 
 ### Common Issues
@@ -174,6 +189,11 @@ dad_joke/
    - Verify all required fields are provided
    - Check email and password combination
    - Ensure proper error handling
+
+3. **Display Issues**
+   - Verify Jersey 15 font is properly loaded
+   - Check CSS media queries for responsive design
+   - Ensure proper CSS class implementation
 
 ## Contributing
 
