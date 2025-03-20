@@ -11,13 +11,7 @@ document.addEventListener("click", function(event) {
     if (!event.target.matches("#button")) return;
     console.log("Button was pressed");
 
-    const URL = 'https://icanhazdadjoke.com/';
-    fetch (URL, {
-        headers: {
-            'Accept': 'application/json',
-            'User-Agent': 'Dad Joke Web App'
-        }
-    })
+    fetch('http://localhost:5501/random-joke')
     .then(response => {
         if (!response.ok) {
             throw new Error('Error fetching joke');
@@ -26,7 +20,7 @@ document.addEventListener("click", function(event) {
     })
     .then(data => {
         console.log(data.joke);
-        currentJoke = data.joke; 
+        currentJoke = data.joke;
         document.getElementById("punchline").textContent = data.joke;
     })
     .catch(error => {

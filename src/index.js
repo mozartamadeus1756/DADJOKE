@@ -138,7 +138,27 @@ app.get("/see-favorites", async (req, res) => {
       if (conn) await conn.release();
   }
 });
- 
+
+app.get('/random-joke', async (req, res) => {
+  try {
+    const response = await fetch('https://icanhazdadjoke.com/', {
+      headers: {
+        'Accept': 'application/json',
+        'User-Agent': 'Dad Joke Web App'
+      }
+    });
+    
+    if (!response.ok) {
+      throw new Error('Error fetching joke');
+    }
+    
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    console.error('Error fetching the dad joke:', error);
+    res.status(500).json({ error: 'Failed to fetch joke' });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server running! http://localhost:${port}`);

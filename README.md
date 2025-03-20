@@ -103,7 +103,7 @@ dad_joke/
 │   ├── login.html
 │   └── register.html
 ├── src/
-│   └── server.js
+│   └── index.js
 ├── package.json
 └── .env
 ```
