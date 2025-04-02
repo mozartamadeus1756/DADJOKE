@@ -19,7 +19,7 @@ const pool = mariadb.createPool({
 
 app.use(express.static('../public'));
 app.get('/', (req, res) => {
-    res.sendFile('login.html', { root: '../public' });
+    res.sendFile('login.html', { root: '../public' }); // tenk om du skal bruke dette hvis det ikke går på noen annen måte  
 });
 
 app.use(bodyParser.json());
@@ -163,3 +163,8 @@ app.get('/random-joke', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server running! http://localhost:${port}`);
 });
+
+
+
+
+
