@@ -1,21 +1,21 @@
-// require('dotenv').config();
-// const mariadb = require('mariadb');
+require('dotenv').config();
+const mariadb = require('mariadb');
 const express = require('express')
 const bodyParser = require('body-parser');
 const cors = require('cors');
-// const bcrypt = require('bcrypt');
-// const crypto = require('crypto');
+const bcrypt = require('bcrypt');
+const crypto = require('crypto');
 
 const app = express();
 const port = process.env.PORT || 5501;
 
-// const pool = mariadb.createPool({
-//     host: process.env.DB_HOST,
-//     user: process.env.DB_USER,
-//     password: process.env.DB_PASSWORD,
-//     database: process.env.DB_NAME,
-//     connectionLimit: process.env.DB_CONN_LIMIT
-// });
+const pool = mariadb.createPool({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    connectionLimit: process.env.DB_CONN_LIMIT
+});
 
 app.use(express.static('../public'));
 app.get('/', (req, res) => {
@@ -158,7 +158,7 @@ app.get('/random-joke', async (req, res) => {
     console.error('Error fetching the dad joke:', error);
     res.status(500).json({ error: 'Failed to fetch joke' });
   }
-});
+}); 
 
 app.listen(port, () => {
   console.log(`Server running!`); //  http://localhost:${port}
